@@ -16,6 +16,10 @@ section {
   background-repeat: no-repeat;
 }
 
+.logo img {
+  max-width: 100%;
+}
+
 .wrapper {
   /* height: 265px;
   max-width: 410px; */
