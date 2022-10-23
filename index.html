@@ -4,46 +4,79 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+
+    <title>QR Code scanner</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/HelperClass.css" />
   </head>
   <body>
-    <div id="qr-reader" style="width: 500px"></div>
-    <div id="qr-reader-results"></div>
-  </body>
-  <script src="html5-qrcode.min.js"></script>
-  <script>
-    function docReady(fn) {
-      // see if DOM is already available
-      if (
-        document.readyState === "complete" ||
-        document.readyState === "interactive"
-      ) {
-        // call on next available tick
-        setTimeout(fn, 1);
-      } else {
-        document.addEventListener("DOMContentLoaded", fn);
-      }
-    }
+    <section>
+      <div class="container">
+        <div class="row r-gap justify-content-center">
+          <div class="col-12 d-flex justify-content-center">
+            <div class="logo d-flex mb-5 mb-md-0">
+              <img src="img/logo.png" alt="" />
+            </div>
+          </div>
 
-    docReady(function () {
-      var resultContainer = document.getElementById("qr-reader-results");
-      var lastResult,
-        countResults = 0;
-      function onScanSuccess(decodedText, decodedResult) {
-        if (decodedText !== lastResult) {
-          ++countResults;
-          lastResult = decodedText;
-          // Handle on success condition with the decoded message.
-          console.log(`Scan result ${decodedText}`, decodedResult);
-          resultContainer.innerHTML = lastResult
+          <!-- scanner -->
+
+          <div class="col-md-6 d-flex align-items-center">
+            <div class="wrapper">
+              <h1>QR Code scanner</h1>
+              <div id="qr-reader" style="width: 500px"></div>
+              <div id="qr-reader-results"></div>
+            </div>
+          </div>
+
+          <!-- img gif -->
+
+          <div class="col-md-6 img_explanation">
+            <img
+              src="./img/mQmcrC93Ryi2U4x5UdZNeyHQMybbyk71yCVm.gif"
+              alt="qr code"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- start script  -->
+
+    <script src="./js/html5-qrcode.min.js"></script>
+    <script>
+      function docReady(fn) {
+        // see if DOM is already available
+        if (
+          document.readyState === "complete" ||
+          document.readyState === "interactive"
+        ) {
+          // call on next available tick
+          setTimeout(fn, 1);
+        } else {
+          document.addEventListener("DOMContentLoaded", fn);
         }
       }
 
-      var html5QrcodeScanner = new Html5QrcodeScanner("qr-reader", {
-        fps: 10,
-        qrbox: 250,
+      docReady(function () {
+        var resultContainer = document.getElementById("qr-reader-results");
+        var lastResult,
+          countResults = 0;
+        function onScanSuccess(decodedText, decodedResult) {
+          if (decodedText !== lastResult) {
+            ++countResults;
+            lastResult = decodedText;
+            // Handle on success condition with the decoded message.
+            // console.log(`Scan result ${decodedText}`, decodedResult);
+          }
+        }
+
+        var html5QrcodeScanner = new Html5QrcodeScanner("qr-reader", {
+          fps: 10,
+          qrbox: 250,
+        });
+        html5QrcodeScanner.render(onScanSuccess);
       });
-      html5QrcodeScanner.render(onScanSuccess);
-    });
-  </script>
+    </script>
+  </body>
 </html>
