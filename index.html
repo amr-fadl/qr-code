@@ -28,9 +28,7 @@
             <h1>QR Code scanner</h1>
             <div id="qr-reader"></div>
             <div id="qr-reader-results"></div>
-            <button id="newReader">test</button>
           </div>
-
         </div>
 
         <!-- img gif -->
@@ -86,13 +84,9 @@
         false);
       html5QrcodeScanner.render(onScanSuccess);
 
-      document.getElementById('newReader').addEventListener('click', () => {
-        html5QrcodeScanner.stop().then((ignore) => {
-          console.log('amr');
-        }).catch((err) => {
-          // Stop failed, handle it.
-        });
-      })
+      // document.getElementById('newReader').addEventListener('click', () => {
+
+      // })
 
 
     });
