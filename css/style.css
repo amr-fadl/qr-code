@@ -45,6 +45,10 @@ img[alt="Info icon"],
 #qr-reader-results{
   margin-top: 20px;
 }
+
+select{
+  margin-top: 10px;
+}
 .wrapper .form {
   margin: 20px 0 25px;
 }
