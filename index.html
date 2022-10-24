@@ -1,83 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>QR Code scanner</title>
-    <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/HelperClass.css" />
-  </head>
-  <body>
-    <section class="pt-5 pb-5">
-      <div class="container">
-        <div class="row r-gap justify-content-center">
-          <div class="col-12 d-flex justify-content-center">
-            <div class="logo d-flex mb-5 mb-md-0">
-              <img src="img/logo.png" alt="" />
-            </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>QR Code scanner</title>
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/HelperClass.css" />
+</head>
+
+<body>
+  <section class="pt-5 pb-5">
+    <div class="container">
+      <div class="row r-gap justify-content-center">
+        <div class="col-12 d-flex justify-content-center">
+          <div class="logo d-flex mb-5 mb-md-0">
+            <img src="img/logo.png" alt="" />
+          </div>
+        </div>
+
+        <!-- scanner -->
+
+        <div class="col-md-6 d-flex align-items-center">
+          <div class="wrapper">
+            <h1>QR Code scanner</h1>
+            <div id="qr-reader"></div>
+            <div id="qr-reader-results"></div>
+            <button id="newReader">test</button>
           </div>
 
-          <!-- scanner -->
+        </div>
 
-          <div class="col-md-6 d-flex align-items-center">
-            <div class="wrapper">
-              <h1>QR Code scanner</h1>
-              <div id="qr-reader"></div>
-              <div id="qr-reader-results"></div>
-            </div>
-          </div>
+        <!-- img gif -->
 
-          <!-- img gif -->
-
-          <!-- <div class="col-md-6 img_explanation">
-            <img
-              src="./img/mQmcrC93Ryi2U4x5UdZNeyHQMybbyk71yCVm.gif"
-              alt="qr code"
-            />
-          </div> -->
+        <div class="col-md-6 img_explanation">
+          <img src="./img/mQmcrC93Ryi2U4x5UdZNeyHQMybbyk71yCVm.gif" alt="qr code" />
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- start script  -->
+  <!-- start script  -->
 
-    <script src="./js/html5-qrcode.min.js"></script>
-    <script>
-      function docReady(fn) {
-        // see if DOM is already available
-        if (
-          document.readyState === "complete" ||
-          document.readyState === "interactive"
-        ) {
-          // call on next available tick
-          setTimeout(fn, 1);
-        } else {
-          document.addEventListener("DOMContentLoaded", fn);
+  <script src="./js/html5-qrcode.min.js"></script>
+  <script>
+    function docReady(fn) {
+      // see if DOM is already available
+      if (
+        document.readyState === "complete" ||
+        document.readyState === "interactive"
+      ) {
+        // call on next available tick
+        setTimeout(fn, 1);
+      } else {
+        document.addEventListener("DOMContentLoaded", fn);
+      }
+    }
+
+    docReady(function () {
+      var resultContainer = document.getElementById("qr-reader-results");
+      var lastResult,
+        countResults = 0;
+
+      function onScanSuccess(decodedText, decodedResult) {
+        if (decodedText !== lastResult) {
+          ++countResults;
+          lastResult = decodedText;
+          // Handle on success condition with the decoded message.
+          // console.log(`Scan result ${decodedText}`, decodedResult);
+          resultContainer.innerHTML = lastResult
         }
       }
-  
-      docReady(function () {
-        var resultContainer = document.getElementById("qr-reader-results");
-        var lastResult,
-          countResults = 0;
-        function onScanSuccess(decodedText, decodedResult) {
-          if (decodedText !== lastResult) {
-            ++countResults;
-            lastResult = decodedText;
-            // Handle on success condition with the decoded message.
-            console.log(`Scan result ${decodedText}`, decodedResult);
-            resultContainer.innerHTML = lastResult
-          }
-        }
-  
-        var html5QrcodeScanner = new Html5QrcodeScanner("qr-reader", {
+
+      let html5QrcodeScanner = new Html5QrcodeScanner(
+        "qr-reader", {
           fps: 10,
-          qrbox: 250,
+          qrbox: {
+            width: 150,
+            height: 150
+          }
+        },
+        /* verbose= */
+        false);
+      html5QrcodeScanner.render(onScanSuccess);
+
+      document.getElementById('newReader').addEventListener('click', () => {
+        html5QrcodeScanner.stop().then((ignore) => {
+          console.log('amr');
+        }).catch((err) => {
+          // Stop failed, handle it.
         });
-        html5QrcodeScanner.render(onScanSuccess);
-      });
-    </script>
-  </body>
+      })
+
+
+    });
+  </script>
+</body>
+
 </html>

@@ -20,6 +20,8 @@ section {
   max-width: 100%;
 }
 
+
+
 .wrapper {
   /* height: 265px;
   max-width: 410px; */
@@ -50,6 +52,7 @@ img[alt="Info icon"],
   padding: 20px !important;
 }
 button {
+  display: block !important;
   color: #fff;
   cursor: pointer;
   margin-top: 20px;
