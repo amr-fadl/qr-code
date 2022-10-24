@@ -42,7 +42,9 @@ img[alt="Info icon"],
 #qr-reader__dashboard_section_swaplink {
   display: none !important;
 }
-
+#qr-reader-results{
+  margin-top: 20px;
+}
 .wrapper .form {
   margin: 20px 0 25px;
 }
@@ -97,6 +99,7 @@ button:hover {
 .r-gap {
   row-gap: 20px;
 }
+
 @media all and (max-width: 767px) {
   .img_explanation img {
     width: 100%;
