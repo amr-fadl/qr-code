@@ -15,30 +15,35 @@
   <section class="pt-5 pb-5">
     <div class="container">
       <div class="row r-gap justify-content-center">
-        <div class="col-12 d-flex justify-content-center">
+        <!-- <div class="col-12 d-flex justify-content-center">
           <div class="logo d-flex mb-5 mb-md-0">
             <img src="img/logo.png" alt="" />
           </div>
-        </div>
+        </div> -->
 
         <!-- scanner -->
 
         <div class="col-md-6 d-flex align-items-center">
           <div class="wrapper">
-            <h1>QR Code scanner</h1>
+            <h1 class="d-flex">
+              <div class="title">
+                <p>scan</p> 
+                <span>qr code</span>
+              </div>
+              <img src="./img/qrcode.svg" alt="">
+            </h1>
             <div id="qr-reader"></div>
             <div id="qr-reader-results"></div>
           </div>
         </div>
-
-        <!-- img gif -->
-
-        <div class="col-md-6 img_explanation">
-          <img src="./img/mQmcrC93Ryi2U4x5UdZNeyHQMybbyk71yCVm.gif" alt="qr code" />
+        
+        <div class="copyright col-12">
+          <p>© POWERED BY CREATIVE TWINKLES</p>
         </div>
       </div>
     </div>
   </section>
+
 
   <!-- start script  -->
 
@@ -74,7 +79,7 @@
 
       let html5QrcodeScanner = new Html5QrcodeScanner(
         "qr-reader", {
-          fps: 10,
+          fps: 0,
           qrbox: {
             width: 150,
             height: 150
