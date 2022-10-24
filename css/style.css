@@ -122,6 +122,8 @@ h1 img{
   inset: 30px;
   background: #af8f3a;
   border-radius: 10px;
+  max-height: 300px;
+  max-width: 300px;
 }
 
 video{
