@@ -24,19 +24,19 @@
           <div class="col-md-6 d-flex align-items-center">
             <div class="wrapper">
               <h1>QR Code scanner</h1>
-              <div id="qr-reader" style="width: 500px"></div>
+              <div id="qr-reader"></div>
               <div id="qr-reader-results"></div>
             </div>
           </div>
 
           <!-- img gif -->
 
-          <div class="col-md-6 img_explanation">
+          <!-- <div class="col-md-6 img_explanation">
             <img
               src="./img/mQmcrC93Ryi2U4x5UdZNeyHQMybbyk71yCVm.gif"
               alt="qr code"
             />
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
@@ -57,7 +57,7 @@
           document.addEventListener("DOMContentLoaded", fn);
         }
       }
-
+  
       docReady(function () {
         var resultContainer = document.getElementById("qr-reader-results");
         var lastResult,
@@ -67,10 +67,11 @@
             ++countResults;
             lastResult = decodedText;
             // Handle on success condition with the decoded message.
-            // console.log(`Scan result ${decodedText}`, decodedResult);
+            console.log(`Scan result ${decodedText}`, decodedResult);
+            resultContainer.innerHTML = lastResult
           }
         }
-
+  
         var html5QrcodeScanner = new Html5QrcodeScanner("qr-reader", {
           fps: 10,
           qrbox: 250,
